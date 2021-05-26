@@ -11,11 +11,7 @@ import (
 var ctx = context.Background()
 
 func main() {
-	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.SetOutput(file)
+	initializeLogger()
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
@@ -23,21 +19,33 @@ func main() {
 		DB:       0,  // use default DB
 	})
 
-	key := "test_val"
-	val, err := rdb.Get(ctx, key).Result()
-	if err != nil {
-		panic(err)
-	}
-	log.Println(key, val)
+	key := "postback_queue"
 
-	// val2, err := rdb.Get(ctx, "key2").Result()
-	// if err == redis.Nil {
-	// 	fmt.Println("key2 does not exist")
-	// } else if err != nil {
-	// 	panic(err)
-	// } else {
-	// 	fmt.Println("key2", val2)
-	// }
-	// // Output: key value
-	// // key2 does not exist
+	getNextValue(rdb, key)
+
+}
+
+func initializeLogger() {
+	file, err := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
+}
+
+func getNextValue(redisConn *redis.Client, key string) {
+	// start infinite loop
+	for {
+		// five-second timeout on empty
+		val, err := redisConn.BRPop(ctx, 5000000000, key).Result()
+		if err == redis.Nil {
+			log.Printf("'%v' is currently empty", key)
+		} else if err != nil {
+			panic(err)
+		} else {
+			// need to get index[1] when using BRPop vs normal RPop because
+			// the val returned looks like "[postback_queue test]" and we want "test"
+			log.Printf("Key/Val RPopped: %v:%v", key, val[1])
+		}
+	}
 }
