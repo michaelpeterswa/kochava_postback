@@ -1,8 +1,8 @@
 <html>
  <head>
-  <title>PHP Test</title>
+  <title>Kochava Postback</title>
  </head>
  <body>
- <?php echo '<p>Hello World</p>'; ?> 
+ <?php phpinfo(); ?> 
  </body>
 </html>
