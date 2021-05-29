@@ -64,3 +64,5 @@
 2021/05/29 15:49:19 (404) - time: 132.179233ms - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo=default
 2021/05/29 15:49:20 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}&foo={bar}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
 2021/05/29 15:49:20 (404) - time: 31.022774ms - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo=default
+2021/05/29 16:06:59 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}&foo={bar}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/29 16:06:59 (404) - time: 143.099506ms - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo=default

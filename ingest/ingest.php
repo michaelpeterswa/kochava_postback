@@ -6,6 +6,7 @@
         <?php
 
             $json = file_get_contents('php://input');
+            $ip = file_get_contents("ip.txt");
 
             // decode the json data
             $data = json_decode($json);
@@ -15,7 +16,7 @@
 
             $redis = new Redis();
             //Connecting to Redis
-            $redis->connect('10.0.0.15', 6379);
+            $redis->connect($ip, 6379);
             
             if ($stringified_data != "null"){
                 echo "Valid";

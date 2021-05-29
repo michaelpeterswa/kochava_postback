@@ -1,4 +1,9 @@
 all:
+	./scripts/clean_containers.sh
+	./scripts/build_containers.sh
+	./scripts/start_containers.sh
+
+help:
 	@echo "build, clean, or start"
 
 build:
