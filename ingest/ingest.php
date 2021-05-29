@@ -23,11 +23,8 @@
             }
             else {
                 echo "Invalid";
-            }
-    
+            }  
             
-            
-        
         ?>
     </body>
 </html>
