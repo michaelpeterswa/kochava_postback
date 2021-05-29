@@ -1,15 +1,12 @@
-2021/05/28 15:49:53 'postback_queue' is currently empty
-2021/05/28 15:50:00 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/sample_domain_endpoint.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 15:50:00 Get "respUrl": unsupported protocol scheme ""
-2021/05/28 15:51:22 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/sample_domain_endpoint.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 15:53:02 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/sample_domain_endpoint.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 15:53:02 Get "http://sample_domain_endpoint.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png": dial tcp: lookup sample_domain_endpoint.com: no such host
-2021/05/28 16:01:22 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 16:01:22 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
-2021/05/28 16:01:22 (404) - http://google.com/data?title=Gopher2&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
-2021/05/28 16:01:24 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 16:01:24 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
-2021/05/28 16:01:24 (404) - http://google.com/data?title=Gopher2&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
-2021/05/28 16:01:26 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
-2021/05/28 16:01:26 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
-2021/05/28 16:01:26 (404) - http://google.com/data?title=Gopher2&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
+2021/05/28 18:56:34 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}&foo={bar}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/28 18:56:34 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo={bar}
+2021/05/28 18:56:46 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/28 18:56:46 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
+2021/05/28 18:56:46 (404) - http://google.com/data?title=Gopher2&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
+2021/05/28 18:56:51 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"},{"mascot":"Gopher2","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/28 18:56:51 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
+2021/05/28 18:56:51 (404) - http://google.com/data?title=Gopher2&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png
+2021/05/28 18:56:56 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}&foo={bar}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/28 18:56:56 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo={bar}
+2021/05/28 18:56:58 Key/Val RPopped: postback_queue:{"endpoint":{"method":"GET","url":"http:\/\/google.com\/data?title={mascot}&image={location}&foo={bar}"},"data":[{"mascot":"Gopher","location":"https:\/\/blog.golang.org\/gopher\/gopher.png"}]}
+2021/05/28 18:56:58 (404) - http://google.com/data?title=Gopher&image=https%3A%2F%2Fblog.golang.org%2Fgopher%2Fgopher.png&foo={bar}
