@@ -15,7 +15,7 @@
 
             $redis = new Redis();
             //Connecting to Redis
-            $redis->connect('localhost', 6379);
+            $redis->connect('10.0.0.15', 6379);
             
             if ($stringified_data != "null"){
                 echo "Valid";

@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+	"regexp"
 	"strings"
 )
 
@@ -29,6 +30,15 @@ func constructURL(endpointUrl string, mascot string, location string) string {
 
 	respUrl := strings.Replace(endpointUrl, "{mascot}", mascot, -1)
 	respUrl = strings.Replace(respUrl, "{location}", location, -1)
+
+	bracketRegex := `{+[a-z0-9]+}`
+	defaultValue := "default"
+
+	matched, _ := regexp.MatchString(bracketRegex, respUrl)
+	if matched {
+		re := regexp.MustCompile(bracketRegex)
+		respUrl = re.ReplaceAllString(respUrl, defaultValue)
+	}
 
 	return respUrl
 }

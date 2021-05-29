@@ -7,8 +7,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/go-redis/redis/v8"
 )
@@ -46,13 +48,14 @@ func dequeueLoop(redisConn *redis.Client, key string) {
 			log.Printf("Key/Val RPopped: %v:%v", key, val[1])
 			if isValidJSON(obj) && obj != "null" {
 				// log.Printf("-- Valid JSON --")
-				prepareResponse(obj)
+				start := time.Now()
+				prepareResponse(obj, start)
 			}
 		}
 	}
 }
 
-func prepareResponse(data string) {
+func prepareResponse(data string, start time.Time) {
 	var pb Postback
 
 	err := json.Unmarshal([]byte(data), &pb)
@@ -63,15 +66,18 @@ func prepareResponse(data string) {
 	for _, data := range pb.Data {
 
 		respUrl := constructURL(pb.Endpoint.Url, data.Mascot, data.Location)
-		sendResponse(respUrl)
+		sendResponse(respUrl, start)
 	}
 }
 
-func sendResponse(respUrl string) {
+func sendResponse(respUrl string, start time.Time) {
 	resp, err := http.Get(respUrl)
 	if err != nil {
 		log.Println(err)
 	} else {
-		log.Printf("(%v) - %v", resp.StatusCode, respUrl)
+		t := time.Now()
+		elapsed := t.Sub(start)
+		log.Printf("(%v) - time: %v - %v", resp.StatusCode, elapsed, respUrl)
+		fmt.Printf("(%v) - time: %v - %v\n", resp.StatusCode, elapsed, respUrl)
 	}
 }
