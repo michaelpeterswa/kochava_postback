@@ -1,0 +1,22 @@
+{
+  "name": "kochava_postback",
+  "version": "1.1.0",
+  "description": "demonstration of a postback using Go and PHP",
+  "main": "none",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelpeterswa/kochava_postback.git"
+  },
+  "author": "Michael Peters",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/michaelpeterswa/kochava_postback/issues"
+  },
+  "homepage": "https://github.com/michaelpeterswa/kochava_postback#readme",
+  "devDependencies": {
+    "standard-version": "^9.3.0"
+  }
+}
