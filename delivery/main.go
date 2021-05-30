@@ -1,7 +1,7 @@
 // Michael Peters
 // main.go
 // runner for the Kochava Postback Delivery Agent
-// Last Modified: 05/28/21 18:50 PDT
+// Last Modified: 05/29/21 17:45 PDT
 
 package main
 
@@ -14,7 +14,7 @@ var ctx = context.Background()
 func main() {
 
 	// set up initial values (most importantly queueKey)
-	name := "Delivery Agent v1.0.0"
+	name := "Delivery Agent v1.1.0"
 	author := "Michael Peters"
 	queueKey := "postback_queue"
 

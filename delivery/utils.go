@@ -1,7 +1,7 @@
 // Michael Peters
 // utils.go
 // utilities for the Kochava Postback Delivery Agent
-// Last Modified: 05/28/21 19:00 PDT
+// Last Modified: 05/29/21 16:15 PDT
 
 package main
 
@@ -31,7 +31,9 @@ func constructURL(endpointUrl string, mascot string, location string) string {
 	respUrl := strings.Replace(endpointUrl, "{mascot}", mascot, -1)
 	respUrl = strings.Replace(respUrl, "{location}", location, -1)
 
+	// regular expression that matches anything (alphanum) surrounded by curly brackets
 	bracketRegex := `{+[a-z0-9]+}`
+	// default value to replace the brackets with if there is an unmatched key
 	defaultValue := "default"
 
 	matched, _ := regexp.MatchString(bracketRegex, respUrl)

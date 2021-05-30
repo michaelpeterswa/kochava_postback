@@ -1,7 +1,7 @@
 // Michael Peters
 // postback.go
 // Postback struct and handling for the Kochava Postback Delivery Agent
-// Last Modified: 05/28/21 18:50 PDT
+// Last Modified: 05/29/21 16:30 PDT
 
 package main
 
@@ -19,19 +19,25 @@ import (
 // https://github.com/Jeffail/gabs
 // https://bencane.com/2020/12/08/maps-vs-structs-for-json/
 
+// the parent "postback" object
 type Postback struct {
 	Endpoint Endpoint    `json:"endpoint,omitempty"`
 	Data     []DataValue `json:"data,omitempty"`
 }
+
+// the "endpoint" object based upon the ingested json
 type Endpoint struct {
 	Method string `json:"method,omitempty"`
 	Url    string `json:"url,omitempty"`
 }
+
+// the "data" object based upon the ingested json
 type DataValue struct {
 	Mascot   string `json:"mascot,omitempty"`
 	Location string `json:"location,omitempty"`
 }
 
+// the main loop that pops new pieces of data out of the Redis queue
 func dequeueLoop(redisConn *redis.Client, key string) {
 	// start infinite loop
 	for {
@@ -55,6 +61,8 @@ func dequeueLoop(redisConn *redis.Client, key string) {
 	}
 }
 
+// using the object from the previous function, this unmarshals the string into
+// a Postback object as defined above
 func prepareResponse(data string, start time.Time) {
 	var pb Postback
 
@@ -64,12 +72,14 @@ func prepareResponse(data string, start time.Time) {
 	}
 
 	for _, data := range pb.Data {
-
+		// send the important pieces of data to the utility "constructURL" to perform
+		// regex matching and replacement with the provided data
 		respUrl := constructURL(pb.Endpoint.Url, data.Mascot, data.Location)
 		sendResponse(respUrl, start)
 	}
 }
 
+// once the response has been cleaned and transformed into a response URL, send request
 func sendResponse(respUrl string, start time.Time) {
 	resp, err := http.Get(respUrl)
 	if err != nil {
