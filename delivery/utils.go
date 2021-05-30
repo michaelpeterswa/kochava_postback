@@ -1,7 +1,7 @@
 // Michael Peters
 // utils.go
 // utilities for the Kochava Postback Delivery Agent
-// Last Modified: 05/29/21 16:15 PDT
+// Last Modified: 05/29/21 18:15 PDT
 
 package main
 
@@ -26,8 +26,10 @@ func isValidJSON(input string) bool {
 
 // simple solution for replacing the substrings in the endpoint (could be improved)
 func constructURL(endpointUrl string, mascot string, location string) string {
+	// important to URL encode the endpoint (to ensure final URL is valid)
 	location = url.QueryEscape(location)
 
+	// replacing the predetermined items
 	respUrl := strings.Replace(endpointUrl, "{mascot}", mascot, -1)
 	respUrl = strings.Replace(respUrl, "{location}", location, -1)
 
@@ -36,9 +38,11 @@ func constructURL(endpointUrl string, mascot string, location string) string {
 	// default value to replace the brackets with if there is an unmatched key
 	defaultValue := "default"
 
+	// check string for remaining bracket keys
 	matched, _ := regexp.MatchString(bracketRegex, respUrl)
 	if matched {
 		re := regexp.MustCompile(bracketRegex)
+		// replace all unmatched bracket keys with the default value
 		respUrl = re.ReplaceAllString(respUrl, defaultValue)
 	}
 
