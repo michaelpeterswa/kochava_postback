@@ -10,10 +10,22 @@ Central to the entire project is the Redis queue. This is managed using Redis Li
 
 ## Problems Encountered
 
-The first major issue that required me to make a design choice was the Unmatched Key specification (in Extra Credit). In a language like Python, JSON objects can be natively converted to Dictionaries, whereas Go requires a stricter Type-safe implementation using structs. The only other way in Go is to map the values, which increases complexity and removes the type-safety of the application. Given that, and further information from https://bencane.com/2020/12/08/maps-vs-structs-for-json/, I chose to implement a struct that represents the ingested JSON. If more fields are needed in the future (beyond "location" and "masccot") then they should be added to the struct. The value for unmatched keys are now set to the default as specified in the constructURL() utility. This ensures that other values can be safely passed through the ingest and out through delivery while maintaining safe and compliant URL's.
+The first major issue that required me to make a design choice was the Unmatched Key specification (in Extra Credit). In a language like Python, JSON objects can be natively converted to Dictionaries, whereas Go requires a stricter Type-safe implementation using structs. The only other way in Go is to map the values, which increases complexity and removes the type-safety of the application. Given that, and further information from [Maps vs. Structs for JSON (Ben Cane)](https://bencane.com/2020/12/08/maps-vs-structs-for-json/), I chose to implement a struct that represents the ingested JSON. If more fields are needed in the future (beyond "location" and "masccot") then they should be added to the struct. The value for unmatched keys are now set to the default as specified in the constructURL() utility. This ensures that other values can be safely passed through the ingest and out through delivery while maintaining safe and compliant URL's.
 
 Another problem was encountered in setting up PHP's Docker container. I have a very small amount of familiarity with PHP and the installation on my computer took a fair amount of effort and troubleshooting. I wanted to streamline the install in Docker though, and eventually settled on a PHP image that includes the Apache webserver. This made the install much smoother, and only required installing the Redis extension on top of the base image. I have found that this works well, especially now that I am utilizing a multi-container architecture (See Docker section below).
 
 ## Docker
 
 At the beginning I was slightly confused how I would be able to structure and distribute this project from a single Docker container, like Ubuntu:14.04. The Docker documentation says, "It is generally recommended that you separate areas of concern by using one service per container". This is the method that I prefer, as it allows for better horizontal scaling and much safer failures (that don't take the entire application down). In the end, I settled for using three separate containers, one for delivery, one for ingestion, and the other for Redis. These three containers can be easily managed by the scripts in the "scripts" folder as well as through the Makefile.
+
+## Prior to Testing
+
+Ensure that the addresses and ports in the files described in [DOCUMENTATION.md](DOCUMENTATION.md) have been changed to correspond to your local system.
+
+## Simple Installation Method
+
+This command will clean, build, and start the containers on your system. The only dependencies are Make and Docker.
+
+```
+make
+```

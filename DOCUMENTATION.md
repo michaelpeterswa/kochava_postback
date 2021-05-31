@@ -1,3 +1,22 @@
+# Important Information
+
+## Environment Files
+
+For the delivery agent (Go), there is a file titled ".env". This file holds the IP and Port information that is used in our connection to the Redis Store. It looks like this:
+
+```
+REDIS_IP={YOUR MACHINE'S IP HERE}
+REDIS_PORT=6379
+```
+
+For the ingest agent (PHP), there is a file titled "ip.txt". This file holds the IP information that is used in our connection to the Redis Store. It looks like this:
+
+```
+{YOUR MACHINE'S IP HERE}
+```
+
+The setup of these values is critical to the operation of the containers.
+
 # Useful Commands
 
 ## Delivery Agent
