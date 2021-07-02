@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+    redis: 
+        container_name: redis
+        ports: 
+            - "6379:6379"
+        image: redis
+    ingest:
+        container_name: ingest
+        image: michaelpeterswa/kochava_postback_ingest
+        depends_on: 
+            - "redis"
+        ports:
+            - "80:80"
+    delivery:
+        container_name: delivery
+        image: michaelpeterswa/kochava_postback_delivery
+        depends_on: 
+            - "redis"

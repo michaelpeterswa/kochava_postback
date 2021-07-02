@@ -16,7 +16,7 @@
 
             $redis = new Redis();
             //Connecting to Redis
-            $redis->connect($ip, 6379);
+            $redis->connect("$ip", 6379);
             
             if ($stringified_data != "null"){
                 echo "Valid";

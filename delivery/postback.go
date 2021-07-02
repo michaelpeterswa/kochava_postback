@@ -84,6 +84,7 @@ func sendResponse(respUrl string, start time.Time) {
 	resp, err := http.Get(respUrl)
 	if err != nil {
 		log.Println(err)
+		fmt.Println(err.Error())
 	} else {
 		t := time.Now()
 		elapsed := t.Sub(start)
